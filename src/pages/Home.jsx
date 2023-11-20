@@ -12,13 +12,10 @@ export default function Home() {
         const data = window.localStorage.getItem('MY_APP_STATE');
         if (data !== null) setPage(JSON.parse(data))
     }, []);
-
+    
     useEffect(() => {
         window.localStorage.setItem('MY_APP_STATE', JSON.stringify(page));
-    }, [page]);
-
-
-    useEffect(() => {
+        
         if (page === 'status') {
             setCurrPage(<StatusView />);
         }
