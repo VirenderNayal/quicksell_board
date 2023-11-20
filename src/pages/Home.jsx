@@ -5,30 +5,38 @@ import UsersView from './UsersView';
 import PriorityView from './PriorityView';
 
 export default function Home() {
-    const [page, setPage] = useState('status');
+    const [page, setPage] = useState("status");
     const [currPage, setCurrPage] = useState(<StatusView />)
+    
+    useEffect(() => {
+        const data = window.localStorage.getItem('MY_APP_STATE');
+        if (data !== null) setPage(JSON.parse(data))
+    }, []);
 
     useEffect(() => {
-        if(page === 'status'){
+        window.localStorage.setItem('MY_APP_STATE', JSON.stringify(page));
+    }, [page]);
+
+
+    useEffect(() => {
+        if (page === 'status') {
             setCurrPage(<StatusView />);
         }
 
-        if(page === 'users'){
+        if (page === 'users') {
             setCurrPage(<UsersView />)
         }
 
-        if(page === 'priority'){
+        if (page === 'priority') {
             setCurrPage(<PriorityView />)
         }
     }, [page])
-    
+
     return (
         <div>
-            <Navbar setPage={setPage} page={page}/>
-            
-            {
-                currPage
-            }
+            <Navbar setPage={setPage} page={page} />
+
+            {currPage}
         </div>
     )
 }
