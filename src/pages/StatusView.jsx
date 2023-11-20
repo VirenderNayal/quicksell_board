@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "./statusView.css";
 import Card from '../components/Card';
 import axios from 'axios';
+import { backlogIcon, canceledIcon, doneIcon, inporgressIcon, todoIcon } from '../utils';
 
 export default function StatusView() {
   const [data, setData] = useState(null);
@@ -74,9 +75,7 @@ export default function StatusView() {
             <div className='card-holder'>
               <div className='viewTop'>
                 <div>
-                  <span className="material-symbols-rounded">
-                    fiber_manual_record
-                  </span>
+                  { backlogIcon }
                   <span>Backlog</span>
                   <span>{backlog.length}</span>
                 </div>
@@ -91,7 +90,7 @@ export default function StatusView() {
               </div>
               {
                 backlog.map((ele) => {
-                  return <Card details={ele}/>
+                  return <Card details={ele} view={"status"}/>
                 })
               }
 
@@ -100,9 +99,7 @@ export default function StatusView() {
             <div className='card-holder'>
               <div className='viewTop'>
                 <div>
-                  <span className="material-symbols-rounded">
-                    fiber_manual_record
-                  </span>
+                  { todoIcon }
                   <span>Todo</span>
                   <span>{todo.length}</span>
                 </div>
@@ -117,7 +114,7 @@ export default function StatusView() {
               </div>
               {
                 todo.map((ele) => {
-                  return <Card details={ele}/>
+                  return <Card details={ele} view={"status"}/>
                 })
               }
 
@@ -126,9 +123,7 @@ export default function StatusView() {
             <div className='card-holder'>
               <div className='viewTop'>
                 <div>
-                  <span className="material-symbols-rounded">
-                    fiber_manual_record
-                  </span>
+                  {inporgressIcon}
                   <span>In Progress</span>
                   <span>{inprogress.length}</span>
                 </div>
@@ -143,7 +138,7 @@ export default function StatusView() {
               </div>
               {
                 inprogress.map((ele) => {
-                  return <Card details={ele}/>
+                  return <Card details={ele} view={"status"}/>
                 })
               }
 
@@ -152,9 +147,7 @@ export default function StatusView() {
             <div className='card-holder'>
               <div className='viewTop'>
                 <div>
-                  <span className="material-symbols-rounded">
-                    fiber_manual_record
-                  </span>
+                  {doneIcon}
                   <span>Done</span>
                   <span>{done.length}</span>
                 </div>
@@ -169,7 +162,7 @@ export default function StatusView() {
               </div>
               {
                 done.map((ele) => {
-                  return <Card details={ele}/>
+                  return <Card details={ele} view={"status"}/>
                 })
               }
 
@@ -178,9 +171,7 @@ export default function StatusView() {
             <div className='card-holder'>
               <div className='viewTop'>
                 <div>
-                  <span className="material-symbols-rounded">
-                    fiber_manual_record
-                  </span>
+                  {canceledIcon}
                   <span>Canceled</span>
                   <span>{cancled.length}</span>
                 </div>
@@ -195,7 +186,7 @@ export default function StatusView() {
               </div>
               {
                 cancled.map((ele) => {
-                  return <Card details={ele}/>
+                  return <Card details={ele} view={"status"}/>
                 })
               }
             {

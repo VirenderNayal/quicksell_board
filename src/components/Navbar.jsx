@@ -3,11 +3,10 @@ import "./navbar.css";
 
 export default function Navbar({ setPage, page }) {
     const [showOptions, setShowOptions] = useState(false);
-    const [group, setgGroup] = useState(page);
     
     const onOptionChange = (e) => {
-        setgGroup(e.target.value);
-        setPage(group);
+        setPage(e.target.value);
+        setShowOptions(false);
     }
 
     const groupOptions = [
@@ -32,7 +31,7 @@ export default function Navbar({ setPage, page }) {
 
                     <div className='options'>
                         <label for="grouping">Grouping</label>
-                        <select onChange={onOptionChange}>
+                        <select onChange={onOptionChange} value={page}>
                             {groupOptions.map((option, index) => {
                                 return (
                                     <option key={index}>
